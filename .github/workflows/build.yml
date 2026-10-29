@@ -1,0 +1,24 @@
+
+name: Build Game2048 APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inspect project ZIP
+        run: |
+          unzip -l Game2048.zip
+
+      - name: Upload project listing
+        run: |
+          unzip -l Game2048.zip > project-files.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: project-files
+          path: project-files.txt
